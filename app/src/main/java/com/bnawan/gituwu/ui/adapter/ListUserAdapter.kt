@@ -1,4 +1,4 @@
-package com.bnawan.gituwu.adapter
+package com.bnawan.gituwu.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,21 +22,18 @@ class ListUserAdapter(private val listUser: ArrayList<User>) :
     }
 
     override fun onBindViewHolder(holder: ListUserViewHolder, position: Int) {
-        val (name, username, avatar, follower, _, location, _, _)
-                = listUser[position]
+
         holder.binding.apply {
-            userName.text = name
-            userUsername.text = username
-            userFollower.text = follower.toString()
-            userLocation.text = location
+            userUsername.text = listUser[position].username
+            userUrl.text = listUser[position].url
 
             Glide.with(holder.itemView.context)
-                .load(avatar)
+                .load(listUser[position].avatarUrl)
                 .circleCrop()
                 .into(userImg)
 
             btnDetail.setOnClickListener {
-                onUserClickCallback.onItemClicked(listUser[position])
+                onUserClickCallback.onItemClicked(listUser[position].username)
             }
         }
     }

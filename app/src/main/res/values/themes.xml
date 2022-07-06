@@ -28,4 +28,11 @@
     <style name="TextView.White">
         <item name="android:textColor">@color/pink_white</item>
     </style>
+
+    <style name="TextView.Softlight">
+        <item name="android:textColor">@color/pink_softlight</item>
+    </style>
+
+    <style name="Theme.GitUwu.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
 </resources>

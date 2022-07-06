@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GitUwu</string>
-    <string name="home_title">Top Users</string>
-    <string name="detail_title">Detail User</string>
+    <string name="home_title">Home</string>
+    <string name="detail_title">Detail</string>
     <string name="header_logo_desc">This is GitUwu Logo</string>
     <string name="user_img_desc">This is user image</string>
     <string name="detail_logo_desc">This is detail logo</string>
@@ -11,6 +11,12 @@
     <string name="txt_at">\@</string>
     <string name="txt_separator">.</string>
     <string name="txt_repo">Repositories</string>
+    <string name="tab_desc">This is tab followers and followings</string>
+    <string name="tab_text_1">Followers</string>
+    <string name="tab_text_2">Followings</string>
+    <string name="no_search_text">Click search button above to find\na GitHub user</string>
+    <string name="no_follow_text">Not found any person here</string>
+    <string name="strip">\-</string>
 
     <!-- Tool -->
     <string name="follower_count">428</string>
@@ -18,6 +24,10 @@
     <string name="txt_location">Banda Aceh, Nanggroe Aceh Darussalam, Indonesia, Negara Kesatuan RI</string>
     <string name="txt_name">User 1</string>
     <string name="txt_company">JVMDeveloperID @KotlinID @IDDevOps</string>
+    <string name="search">Search</string>
+
+    <string name="txt_url">https://github.com/sidiqpermanaaaaaaaaaaaaa</string>
+    <string name="content_tab_text">This is Tab %1$d</string>
 
     <!-- Data User -->
     <string-array name="username">

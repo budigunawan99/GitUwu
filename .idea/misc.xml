@@ -4,14 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/drawable-v23/splashscreen.xml" value="0.14" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/drawable/custom_loading.xml" value="0.15" />
         <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/drawable/header.xml" value="0.14" />
         <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/drawable/header_background.xml" value="0.14" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/drawable/ic_baseline_error_outline_24.xml" value="0.1865" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.121" />
         <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/drawable/splashscreen.xml" value="0.176" />
-        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/activity_detail.xml" value="0.28761651131824234" />
-        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/activity_detail.xml" value="0.25" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/detail_header.xml" value="0.18229166666666666" />
         <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/detail_user.xml" value="0.25" />
-        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/header.xml" value="0.25" />
-        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/item_user.xml" value="0.22" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/fragment_follow.xml" value="0.18" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/fragment_follower.xml" value="0.33" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/fragment_following.xml" value="0.13541666666666666" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/header.xml" value="0.33" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/header_detail.xml" value="0.18229166666666666" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/header_detail_collapse.xml" value="0.25" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/layout/item_user.xml" value="0.33" />
+        <entry key="..\:/AndroidStudio/ASproject/GitUwu/app/src/main/res/menu/option_menu.xml" value="0.18229166666666666" />
       </map>
     </option>
   </component>

@@ -1,223 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pink_white">
+    android:paddingTop="?attr/actionBarSize"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp"
+    android:background="@color/pink_soft">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/detail_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/user_img_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/user"
+        tools:srcCompat="@drawable/user1" />
+
+    <TextView
+        android:id="@+id/detail_name"
+        style="@style/TextView.Dark"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/detail_img"
+        app:layout_constraintStart_toStartOf="@+id/detail_img"
+        app:layout_constraintTop_toBottomOf="@+id/detail_img"
+        android:text="@string/strip"
+        tools:text="@string/txt_name" />
 
-        <ImageView
-            android:id="@+id/detail_img"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:contentDescription="@string/user_img_desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/user1" />
+    <TextView
+        android:id="@+id/detail_username"
+        style="@style/TextView.Dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strip"
+        tools:text="@string/txt_name"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/detail_name"
+        app:layout_constraintStart_toStartOf="@+id/detail_name"
+        app:layout_constraintTop_toBottomOf="@+id/detail_name" />
 
-        <TextView
-            android:id="@+id/detail_name"
-            style="@style/TextView.Dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/detail_img"
-            app:layout_constraintStart_toStartOf="@+id/detail_img"
-            app:layout_constraintTop_toBottomOf="@+id/detail_img"
-            tools:text="@string/txt_name" />
+    <ImageView
+        android:id="@+id/detail_follower_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/detail_logo_desc"
+        app:layout_constraintEnd_toStartOf="@+id/detail_follower"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_username"
+        app:srcCompat="@drawable/ic_baseline_people_outline_24" />
 
-        <TextView
-            android:id="@+id/detail_username"
-            style="@style/TextView.Dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_name"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/detail_name"
-            app:layout_constraintStart_toStartOf="@+id/detail_name"
-            app:layout_constraintTop_toBottomOf="@+id/detail_name" />
+    <TextView
+        android:id="@+id/detail_follower"
+        style="@style/TextView.Dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/strip"
+        tools:text="@string/follower_count"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_follower_detail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/detail_follower_logo"
+        app:layout_constraintTop_toBottomOf="@+id/detail_username" />
 
-        <ImageView
-            android:id="@+id/detail_follower_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/detail_logo_desc"
-            app:layout_constraintEnd_toStartOf="@+id/detail_follower"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_username"
-            app:srcCompat="@drawable/ic_baseline_people_outline_24" />
+    <TextView
+        android:id="@+id/txt_follower_detail"
+        style="@style/TextView.Dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/txt_followers"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_separator"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/detail_follower"
+        app:layout_constraintTop_toBottomOf="@+id/detail_username" />
 
-        <TextView
-            android:id="@+id/detail_follower"
-            style="@style/TextView.Dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/follower_count"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/txt_follower_detail"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/detail_follower_logo"
-            app:layout_constraintTop_toBottomOf="@+id/detail_username" />
+    <TextView
+        android:id="@+id/txt_separator"
+        style="@style/TextView.Dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/txt_separator"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/detail_following"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txt_follower_detail"
+        app:layout_constraintTop_toBottomOf="@+id/detail_username" />
 
-        <TextView
-            android:id="@+id/txt_follower_detail"
-            style="@style/TextView.Dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/txt_followers"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/txt_separator"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/detail_follower"
-            app:layout_constraintTop_toBottomOf="@+id/detail_username" />
+    <TextView
+        android:id="@+id/detail_following"
+        style="@style/TextView.Dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/strip"
+        tools:text="@string/following_count"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_following_detail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txt_separator"
+        app:layout_constraintTop_toBottomOf="@+id/detail_username" />
 
-        <TextView
-            android:id="@+id/txt_separator"
-            style="@style/TextView.Dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/txt_separator"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/detail_following"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/txt_follower_detail"
-            app:layout_constraintTop_toBottomOf="@+id/detail_username" />
+    <TextView
+        android:id="@+id/txt_following_detail"
+        style="@style/TextView.Dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/txt_following"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/detail_following"
+        app:layout_constraintTop_toBottomOf="@+id/detail_username" />
 
-        <TextView
-            android:id="@+id/detail_following"
-            style="@style/TextView.Dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/following_count"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/txt_following_detail"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/txt_separator"
-            app:layout_constraintTop_toBottomOf="@+id/detail_username" />
+    <ImageView
+        android:id="@+id/detail_repo_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/detail_logo_desc"
+        app:layout_constraintEnd_toStartOf="@+id/detail_repo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_follower_detail"
+        app:srcCompat="@drawable/ic_baseline_storage_24" />
 
-        <TextView
-            android:id="@+id/txt_following_detail"
-            style="@style/TextView.Dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/txt_following"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/detail_following"
-            app:layout_constraintTop_toBottomOf="@+id/detail_username" />
+    <TextView
+        android:id="@+id/detail_repo"
+        style="@style/TextView.Dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/strip"
+        tools:text="@string/follower_count"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_repo_detail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/detail_repo_logo"
+        app:layout_constraintTop_toBottomOf="@+id/txt_follower_detail" />
 
-        <ImageView
-            android:id="@+id/detail_repo_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/detail_logo_desc"
-            app:layout_constraintEnd_toStartOf="@+id/detail_repo"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_follower_detail"
-            app:srcCompat="@drawable/ic_baseline_storage_24" />
+    <TextView
+        android:id="@+id/txt_repo_detail"
+        style="@style/TextView.Dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/txt_repo"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/detail_repo"
+        app:layout_constraintTop_toBottomOf="@+id/txt_follower_detail" />
 
-        <TextView
-            android:id="@+id/detail_repo"
-            style="@style/TextView.Dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/follower_count"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/txt_repo_detail"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/detail_repo_logo"
-            app:layout_constraintTop_toBottomOf="@+id/txt_follower_detail" />
+    <ImageView
+        android:id="@+id/detail_company_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/detail_logo_desc"
+        app:layout_constraintEnd_toStartOf="@+id/detail_company"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/detail_company"
+        app:srcCompat="@drawable/ic_baseline_business_24" />
 
-        <TextView
-            android:id="@+id/txt_repo_detail"
-            style="@style/TextView.Dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/txt_repo"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/detail_repo"
-            app:layout_constraintTop_toBottomOf="@+id/txt_follower_detail" />
+    <TextView
+        android:id="@+id/detail_company"
+        style="@style/TextView.Dark"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/strip"
+        tools:text="@string/txt_company"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/detail_company_logo"
+        app:layout_constraintTop_toBottomOf="@+id/detail_repo" />
 
-        <ImageView
-            android:id="@+id/detail_company_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/detail_logo_desc"
-            app:layout_constraintEnd_toStartOf="@+id/detail_company"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/detail_company"
-            app:srcCompat="@drawable/ic_baseline_business_24" />
+    <ImageView
+        android:id="@+id/detail_location_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/detail_logo_desc"
+        app:layout_constraintEnd_toStartOf="@+id/detail_location"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/detail_location"
+        app:srcCompat="@drawable/ic_baseline_location_on_24" />
 
-        <TextView
-            android:id="@+id/detail_company"
-            style="@style/TextView.Dark"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/txt_company"
-            android:textAlignment="textStart"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/detail_company_logo"
-            app:layout_constraintTop_toBottomOf="@+id/detail_repo" />
+    <TextView
+        android:id="@+id/detail_location"
+        style="@style/TextView.Dark"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/strip"
+        tools:text="@string/txt_location"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/detail_location_logo"
+        app:layout_constraintTop_toBottomOf="@+id/detail_company" />
 
-        <ImageView
-            android:id="@+id/detail_location_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/detail_logo_desc"
-            app:layout_constraintEnd_toStartOf="@+id/detail_location"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/detail_location"
-            app:srcCompat="@drawable/ic_baseline_location_on_24" />
-
-        <TextView
-            android:id="@+id/detail_location"
-            style="@style/TextView.Dark"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/txt_location"
-            android:textAlignment="textStart"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/detail_location_logo"
-            app:layout_constraintTop_toBottomOf="@+id/detail_company" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

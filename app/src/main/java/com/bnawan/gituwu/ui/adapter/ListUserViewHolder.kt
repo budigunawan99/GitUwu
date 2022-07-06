@@ -1,4 +1,4 @@
-package com.bnawan.gituwu.adapter
+package com.bnawan.gituwu.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bnawan.gituwu.databinding.ItemUserBinding
