@@ -21,7 +21,6 @@ import com.bnawan.gituwu.model.User
 import com.bnawan.gituwu.ui.detail.DetailActivity
 import com.google.android.material.snackbar.Snackbar
 
-//TODO: Tambah interface state & bersih-bersih
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
@@ -45,11 +44,11 @@ class MainActivity : AppCompatActivity() {
             onLoading(isLoading)
         }
 
-        viewModel.responseHandler.observe(this){response->
-            response.getContentIfNotHandled()?.let{responseHandler->
-                if(!responseHandler.status) onFailed(responseHandler.message)
+        viewModel.responseHandler.observe(this) { response ->
+            response.getContentIfNotHandled()?.let { responseHandler ->
+                if (!responseHandler.status) onFailed(responseHandler.message)
             }
-            if(response.peekContent().status) onSuccess()
+            if (response.peekContent().status) onSuccess()
         }
 
         showRecyclerList()
@@ -64,14 +63,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onLoading(isLoading: Boolean) {
-        if(isLoading){
+        if (isLoading) {
             binding.apply {
                 searchLoading.visibility = View.VISIBLE
                 noSearchIcon.visibility = View.GONE
                 noSearchText.visibility = View.GONE
                 listUsers.visibility = View.GONE
             }
-        }else{
+        } else {
             binding.searchLoading.visibility = View.GONE
         }
     }

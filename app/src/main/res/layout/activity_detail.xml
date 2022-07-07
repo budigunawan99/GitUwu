@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
-        app:elevation="0dp"
-        android:minHeight="?attr/actionBarSize">
+        android:minHeight="?attr/actionBarSize"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -60,16 +60,16 @@
             android:contentDescription="@string/tab_desc"
             android:minHeight="?attr/actionBarSize"
             app:tabBackground="@color/transparent"
-            app:tabTextColor="@color/pink_soft"
-            app:tabTextAppearance="@style/TextView.Dark"
             app:tabIndicatorColor="@color/pink_black"
             app:tabIndicatorGravity="top"
-            app:tabSelectedTextColor="@color/pink_black"/>
+            app:tabSelectedTextColor="@color/pink_black"
+            app:tabTextAppearance="@style/TextView.Dark"
+            app:tabTextColor="@color/pink_soft" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/detail_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

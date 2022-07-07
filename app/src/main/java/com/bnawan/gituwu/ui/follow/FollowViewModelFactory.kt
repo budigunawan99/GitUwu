@@ -2,7 +2,6 @@ package com.bnawan.gituwu.ui.follow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.bnawan.gituwu.ui.detail.DetailViewModel
 
 class FollowViewModelFactory(
     private val username: String

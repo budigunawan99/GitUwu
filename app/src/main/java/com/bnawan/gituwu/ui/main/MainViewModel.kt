@@ -35,9 +35,9 @@ class MainViewModel : ViewModel() {
 
                 if (response.isSuccessful) {
                     _listUser.value = response.body()?.items
-                    if(_listUser.value.isNullOrEmpty()){
+                    if (_listUser.value.isNullOrEmpty()) {
                         _responseHandler.value = Event(ResponseHandler(false, MESSAGE_NOT_FOUND))
-                    }else{
+                    } else {
                         _responseHandler.value = Event(ResponseHandler(true, response.message()))
                     }
                 } else {

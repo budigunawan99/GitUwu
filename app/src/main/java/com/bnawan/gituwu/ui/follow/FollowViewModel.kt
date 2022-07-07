@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.bnawan.gituwu.data.ApiConfig
 import com.bnawan.gituwu.model.ResponseHandler
 import com.bnawan.gituwu.model.User
-import com.bnawan.gituwu.ui.main.MainViewModel
 import com.bnawan.gituwu.util.Event
 import retrofit2.Call
 import retrofit2.Callback

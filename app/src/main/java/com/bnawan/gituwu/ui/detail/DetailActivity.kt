@@ -48,23 +48,23 @@ class DetailActivity : AppCompatActivity() {
             setDetailInformation(user)
         }
 
-        viewModel.responseHandler.observe(this){response->
-            response.getContentIfNotHandled()?.let{responseHandler->
+        viewModel.responseHandler.observe(this) { response ->
+            response.getContentIfNotHandled()?.let { responseHandler ->
                 when (responseHandler.status) {
                     true -> onSuccess()
-                    false-> onFailed(responseHandler.message)
+                    false -> onFailed(responseHandler.message)
                 }
             }
         }
     }
 
     private fun onLoading(isLoading: Boolean) {
-        if(isLoading){
+        if (isLoading) {
             binding.apply {
                 detailLoading.visibility = View.VISIBLE
                 detailContent.root.visibility = View.INVISIBLE
             }
-        }else{
+        } else {
             binding.detailLoading.visibility = View.GONE
         }
     }
