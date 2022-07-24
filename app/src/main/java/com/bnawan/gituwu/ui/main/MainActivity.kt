@@ -17,14 +17,13 @@ import com.bnawan.gituwu.R
 import com.bnawan.gituwu.ui.adapter.ListUserAdapter
 import com.bnawan.gituwu.ui.adapter.OnUserClickCallback
 import com.bnawan.gituwu.databinding.ActivityMainBinding
-import com.bnawan.gituwu.model.User
 import com.bnawan.gituwu.ui.detail.DetailActivity
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
-    private val listUsers = ArrayList<User>()
+    private lateinit var adapter: ListUserAdapter
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,11 +53,9 @@ class MainActivity : AppCompatActivity() {
         showRecyclerList()
 
         viewModel.listUser.observe(this) { items ->
-            listUsers.apply {
-                clear()
-                addAll(items)
+            items?.let {
+                adapter.setListUser(it)
             }
-            binding.listUsers.adapter?.notifyDataSetChanged()
         }
     }
 
@@ -122,10 +119,10 @@ class MainActivity : AppCompatActivity() {
         } else {
             binding.listUsers.layoutManager = LinearLayoutManager(this)
         }
-        val listUserAdapter = ListUserAdapter(listUsers)
-        binding.listUsers.adapter = listUserAdapter
+        adapter = ListUserAdapter()
+        binding.listUsers.adapter = adapter
 
-        listUserAdapter.setOnUserClickCallback(object : OnUserClickCallback {
+        adapter.setOnUserClickCallback(object : OnUserClickCallback {
             override fun onItemClicked(username: String) {
                 moveToDetail(username)
             }

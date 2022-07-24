@@ -2,15 +2,26 @@ package com.bnawan.gituwu.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bnawan.gituwu.databinding.ItemUserBinding
 import com.bnawan.gituwu.model.User
+import com.bnawan.gituwu.util.UserDiffCallback
 import com.bumptech.glide.Glide
 
-class ListUserAdapter(private val listUser: ArrayList<User>) :
+class ListUserAdapter() :
     RecyclerView.Adapter<ListUserViewHolder>() {
 
     private lateinit var onUserClickCallback: OnUserClickCallback
+    private val listUser = ArrayList<User>()
+
+    fun setListUser(listUser: List<User>) {
+        val diffCallback = UserDiffCallback(this.listUser, listUser)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        this.listUser.clear()
+        this.listUser.addAll(listUser)
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     fun setOnUserClickCallback(onUserClickCallback: OnUserClickCallback) {
         this.onUserClickCallback = onUserClickCallback

@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bnawan.gituwu.databinding.FragmentFollowBinding
-import com.bnawan.gituwu.model.User
 import com.bnawan.gituwu.ui.adapter.ListUserAdapter
 import com.bnawan.gituwu.ui.adapter.OnUserClickCallback
 import com.bnawan.gituwu.ui.detail.DetailActivity
@@ -20,16 +19,18 @@ import com.google.android.material.snackbar.Snackbar
 
 class FollowFragment : Fragment() {
 
-    private lateinit var binding: FragmentFollowBinding
+    private var _binding: FragmentFollowBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var viewModel: FollowViewModel
-    private val listUsers = ArrayList<User>()
+    private lateinit var adapter: ListUserAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFollowBinding.inflate(inflater, container, false)
+        _binding = FragmentFollowBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -59,11 +60,9 @@ class FollowFragment : Fragment() {
         showRecyclerList()
 
         viewModel.listUser.observe(viewLifecycleOwner) { users ->
-            listUsers.apply {
-                clear()
-                addAll(users)
+            users?.let {
+                adapter.setListUser(it)
             }
-            binding.listFollow.adapter?.notifyDataSetChanged()
         }
 
         when (index) {
@@ -81,10 +80,10 @@ class FollowFragment : Fragment() {
         } else {
             binding.listFollow.layoutManager = LinearLayoutManager(context)
         }
-        val listUserAdapter = ListUserAdapter(listUsers)
-        binding.listFollow.adapter = listUserAdapter
+        adapter = ListUserAdapter()
+        binding.listFollow.adapter = adapter
 
-        listUserAdapter.setOnUserClickCallback(object : OnUserClickCallback {
+        adapter.setOnUserClickCallback(object : OnUserClickCallback {
             override fun onItemClicked(username: String) {
                 moveToDetail(username)
             }
@@ -125,6 +124,11 @@ class FollowFragment : Fragment() {
             noFollowText.visibility = View.VISIBLE
             listFollow.visibility = View.GONE
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
