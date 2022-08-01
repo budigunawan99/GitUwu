@@ -1,4 +1,4 @@
-package com.bnawan.gituwu.data
+package com.bnawan.gituwu.data.remote
 
 import com.bnawan.gituwu.BuildConfig
 import okhttp3.OkHttpClient

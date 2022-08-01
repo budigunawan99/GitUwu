@@ -17,6 +17,7 @@
     <string name="no_search_text">Click search button above to find\na GitHub user</string>
     <string name="no_follow_text">Not found any person here</string>
     <string name="strip">\-</string>
+    <string name="fab_desc">This is a floating menu to favorite a user</string>
 
     <!-- Tool -->
     <string name="follower_count">428</string>
@@ -27,4 +28,6 @@
     <string name="search">Search</string>
 
     <string name="txt_url">https://github.com/sidiqpermanaaaaaaaaaaaaa</string>
+    <string name="favorite">Favorite</string>
+    <string name="setting">Settings</string>
 </resources>

@@ -32,6 +32,9 @@
         <item name="android:textColor">@color/pink_softlight</item>
     </style>
 
-    <style name="Theme.GitUwu.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
+    <style name="Theme.GitUwu.Toolbar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorPrimary">@color/pink_black</item>
+        <item name="android:textColorSecondary">@color/pink_black</item>
+        <item name="android:textColor">@color/pink_black</item>
+    </style>
 </resources>

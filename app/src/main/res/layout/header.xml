@@ -10,7 +10,7 @@
     android:minHeight="?attr/actionBarSize"
     android:paddingStart="30dp"
     android:paddingEnd="30dp"
-    android:theme="@style/Theme.GitUwu.AppBarOverlay">
+    android:theme="@style/Theme.GitUwu.Toolbar">
 
     <ImageView
         android:id="@+id/header_logo"

@@ -1,6 +1,5 @@
 package com.bnawan.gituwu.ui.follow
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -11,11 +10,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bnawan.gituwu.data.Result
 import com.bnawan.gituwu.databinding.FragmentFollowBinding
 import com.bnawan.gituwu.ui.adapter.ListUserAdapter
 import com.bnawan.gituwu.ui.adapter.OnUserClickCallback
 import com.bnawan.gituwu.ui.detail.DetailActivity
-import com.google.android.material.snackbar.Snackbar
 
 class FollowFragment : Fragment() {
 
@@ -34,41 +33,46 @@ class FollowFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val index = arguments?.getInt(TAB_NUMBER, 0)
         val username = arguments?.getString(ARG_USERNAME) ?: ""
-        val viewModelFactory = FollowViewModelFactory(username)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(FollowViewModel::class.java)
+        val viewModelFactory = FollowViewModelFactory.getInstance(requireActivity())
+        viewModel = ViewModelProvider(this, viewModelFactory)[FollowViewModel::class.java]
 
         binding.listFollow.setHasFixedSize(true)
 
-        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            onLoading(isLoading)
-        }
-
-        viewModel.responseHandler.observe(viewLifecycleOwner) { response ->
-            response.getContentIfNotHandled()?.let { responseHandler ->
-                when (responseHandler.status) {
-                    true -> onSuccess()
-                    false -> onFailed(responseHandler.message)
-                }
-            }
-        }
-
         showRecyclerList()
 
-        viewModel.listUser.observe(viewLifecycleOwner) { users ->
-            users?.let {
-                adapter.setListUser(it)
-            }
-        }
-
         when (index) {
-            1 -> viewModel.findFollower()
-            2 -> viewModel.findFollowing()
-            else -> viewModel.findFollower()
+            1 -> {
+                viewModel.findFollower(username).observe(viewLifecycleOwner) { result ->
+                    result?.let {
+                        when (result) {
+                            is Result.Loading -> onLoading()
+                            is Result.Error -> onFailed(result.error)
+                            is Result.Success -> {
+                                onSuccess()
+                                adapter.setListUser(result.data)
+                            }
+                        }
+                    }
+                }
+            }
+            2 -> {
+                viewModel.findFollowing(username).observe(viewLifecycleOwner) { result ->
+                    result?.let {
+                        when (result) {
+                            is Result.Loading -> onLoading()
+                            is Result.Error -> onFailed(result.error)
+                            is Result.Success -> {
+                                onSuccess()
+                                adapter.setListUser(result.data)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -96,21 +100,18 @@ class FollowFragment : Fragment() {
         startActivity(detailActivity)
     }
 
-    private fun onLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.apply {
-                followLoading.visibility = View.VISIBLE
-                noFollowIcon.visibility = View.GONE
-                noFollowText.visibility = View.GONE
-                listFollow.visibility = View.GONE
-            }
-        } else {
-            binding.followLoading.visibility = View.GONE
+    private fun onLoading() {
+        binding.apply {
+            followLoading.visibility = View.VISIBLE
+            noFollowIcon.visibility = View.GONE
+            noFollowText.visibility = View.GONE
+            listFollow.visibility = View.GONE
         }
     }
 
     private fun onSuccess() {
         binding.apply {
+            followLoading.visibility = View.GONE
             noFollowIcon.visibility = View.GONE
             noFollowText.visibility = View.GONE
             listFollow.visibility = View.VISIBLE
@@ -118,10 +119,11 @@ class FollowFragment : Fragment() {
     }
 
     private fun onFailed(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
         binding.apply {
+            followLoading.visibility = View.GONE
             noFollowIcon.visibility = View.VISIBLE
             noFollowText.visibility = View.VISIBLE
+            noFollowText.text = message
             listFollow.visibility = View.GONE
         }
     }

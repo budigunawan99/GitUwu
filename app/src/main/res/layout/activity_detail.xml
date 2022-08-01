@@ -72,4 +72,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/pink"
+        android:contentDescription="@string/fab_desc"
+        app:fabSize="normal"
+        android:layout_margin="16dp"
+        app:borderWidth="1dp"
+        app:backgroundTint="@color/pink_softlight"
+        app:layout_anchor="@id/appBar"
+        app:layout_anchorGravity="bottom|end"
+        android:translationY="-55dp"
+        app:srcCompat="@drawable/ic_star_outline"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

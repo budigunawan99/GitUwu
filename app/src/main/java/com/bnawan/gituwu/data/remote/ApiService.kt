@@ -1,32 +1,31 @@
-package com.bnawan.gituwu.data
+package com.bnawan.gituwu.data.remote
 
 import com.bnawan.gituwu.model.SearchResponse
 import com.bnawan.gituwu.model.User
-import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
     @GET("search/users")
-    fun searchUser(
+    suspend fun searchUser(
         @Query("q")
         query: String
-    ): Call<SearchResponse>
+    ): SearchResponse
 
     @GET("users/{username}")
-    fun getUser(
+    suspend fun getUser(
         @Path("username")
         username: String
-    ): Call<User>
+    ): User
 
     @GET("users/{username}/followers")
-    fun getFollower(
+    suspend fun getFollower(
         @Path("username")
         username: String
-    ): Call<List<User>>
+    ): List<User>
 
     @GET("users/{username}/following")
-    fun getFollowing(
+    suspend fun getFollowing(
         @Path("username")
         username: String
-    ): Call<List<User>>
+    ): List<User>
 }

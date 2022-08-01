@@ -8,7 +8,9 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,62 +20,45 @@ import com.bnawan.gituwu.ui.adapter.ListUserAdapter
 import com.bnawan.gituwu.ui.adapter.OnUserClickCallback
 import com.bnawan.gituwu.databinding.ActivityMainBinding
 import com.bnawan.gituwu.ui.detail.DetailActivity
+import com.bnawan.gituwu.ui.favorite.FavoriteActivity
+import com.bnawan.gituwu.ui.setting.SettingActivity
 import com.google.android.material.snackbar.Snackbar
+import com.bnawan.gituwu.data.Result
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: ListUserAdapter
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val viewModelFactory = MainViewModelFactory.getInstance(this)
+
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
         binding.header.headerTitle.text = resources.getString(R.string.home_title)
         setSupportActionBar(binding.header.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         binding.listUsers.setHasFixedSize(true)
-
-        viewModel.isLoading.observe(this) { isLoading ->
-            onLoading(isLoading)
-        }
-
-        viewModel.responseHandler.observe(this) { response ->
-            response.getContentIfNotHandled()?.let { responseHandler ->
-                if (!responseHandler.status) onFailed(responseHandler.message)
-            }
-            if (response.peekContent().status) onSuccess()
-        }
-
         showRecyclerList()
-
-        viewModel.listUser.observe(this) { items ->
-            items?.let {
-                adapter.setListUser(it)
-            }
-        }
     }
 
-    private fun onLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.apply {
-                searchLoading.visibility = View.VISIBLE
-                noSearchIcon.visibility = View.GONE
-                noSearchText.visibility = View.GONE
-                listUsers.visibility = View.GONE
-            }
-        } else {
-            binding.searchLoading.visibility = View.GONE
+    private fun onLoading() {
+        binding.apply {
+            searchLoading.visibility = View.VISIBLE
+            noSearchIcon.visibility = View.GONE
+            noSearchText.visibility = View.GONE
+            listUsers.visibility = View.GONE
         }
     }
 
     private fun onSuccess() {
         binding.apply {
+            searchLoading.visibility = View.GONE
             noSearchIcon.visibility = View.GONE
             noSearchText.visibility = View.GONE
             listUsers.visibility = View.VISIBLE
@@ -83,13 +68,17 @@ class MainActivity : AppCompatActivity() {
     private fun onFailed(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
         binding.apply {
+            searchLoading.visibility = View.GONE
             noSearchIcon.visibility = View.VISIBLE
             noSearchText.visibility = View.VISIBLE
             listUsers.visibility = View.GONE
         }
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        if (menu is MenuBuilder) menu.setOptionalIconsVisible(true)
+
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
 
@@ -101,7 +90,18 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                viewModel.searchUser(query)
+                viewModel.searchUser(query).observe(this@MainActivity) { result ->
+                    result?.let {
+                        when (result) {
+                            is Result.Loading -> onLoading()
+                            is Result.Error -> onFailed(result.error)
+                            is Result.Success -> {
+                                onSuccess()
+                                adapter.setListUser(result.data)
+                            }
+                        }
+                    }
+                }
                 searchView.clearFocus()
                 return true
             }
@@ -111,6 +111,22 @@ class MainActivity : AppCompatActivity() {
             }
         })
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_setting -> {
+                val intent = Intent(this, SettingActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.menu_favorite -> {
+                val intent = Intent(this, FavoriteActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> true
+        }
     }
 
     private fun showRecyclerList() {
