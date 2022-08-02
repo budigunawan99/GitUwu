@@ -5,8 +5,8 @@
 
     <item>
         <bitmap
-            android:src="@drawable/gituwu_logo"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:src="@drawable/gituwu_logo" />
     </item>
 
 </layer-list>

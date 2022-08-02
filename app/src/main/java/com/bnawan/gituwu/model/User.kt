@@ -47,4 +47,7 @@ data class User(
     @field:SerializedName("following")
     @ColumnInfo(name = "following")
     val following: Int,
+
+    @ColumnInfo(name = "isFavorite")
+    var isFavorite: Boolean? = false
 )

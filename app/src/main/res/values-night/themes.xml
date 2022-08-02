@@ -1,27 +1,27 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.GitUwu" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.GitUwu" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/pink</item>
         <item name="colorPrimaryVariant">@color/pink_soft</item>
         <item name="colorOnPrimary">@color/pink_white</item>
-        <item name="android:windowBackground">@color/pink_white</item>
+        <item name="android:windowBackground">@color/dark</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/pink_black</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splashscreen</item>
     </style>
 
-    <style name="CardTheme" parent="CardView.Light" />
+    <style name="CardTheme" parent="CardView.Dark" />
 
     <style name="TextView" parent="TextAppearance.AppCompat">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/poppins</item>
-        <item name="android:textColor">@color/pink_black</item>
+        <item name="android:textColor">@color/pink_white</item>
     </style>
 
     <style name="TextView.Dark">
@@ -40,5 +40,6 @@
         <item name="android:textColorPrimary">@color/pink_black</item>
         <item name="android:textColorSecondary">@color/pink_black</item>
         <item name="android:textColor">@color/pink_black</item>
+        <item name="android:colorBackground">@color/dark</item>
     </style>
 </resources>

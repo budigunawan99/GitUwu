@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pink_white"
     android:fitsSystemWindows="true"
     tools:context=".ui.detail.DetailActivity">
 
@@ -77,14 +76,14 @@
         android:id="@+id/fab_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:backgroundTint="@color/pink"
         android:contentDescription="@string/fab_desc"
-        app:fabSize="normal"
-        android:layout_margin="16dp"
-        app:borderWidth="1dp"
+        android:translationY="-55dp"
         app:backgroundTint="@color/pink_softlight"
+        app:borderWidth="1dp"
+        app:fabSize="normal"
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"
-        android:translationY="-55dp"
-        app:srcCompat="@drawable/ic_star_outline"/>
+        app:srcCompat="@drawable/ic_star_outline" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

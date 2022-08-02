@@ -64,6 +64,7 @@ class DetailActivity : AppCompatActivity() {
         binding.apply {
             detailLoading.visibility = View.VISIBLE
             detailContent.root.visibility = View.INVISIBLE
+            fabFavorite.visibility = View.GONE
         }
     }
 
@@ -71,6 +72,7 @@ class DetailActivity : AppCompatActivity() {
         binding.apply {
             detailLoading.visibility = View.GONE
             detailContent.root.visibility = View.VISIBLE
+            fabFavorite.visibility = View.VISIBLE
         }
     }
 
@@ -79,6 +81,7 @@ class DetailActivity : AppCompatActivity() {
         binding.apply {
             detailLoading.visibility = View.GONE
             detailContent.root.visibility = View.VISIBLE
+            fabFavorite.visibility = View.GONE
         }
     }
 
@@ -113,6 +116,23 @@ class DetailActivity : AppCompatActivity() {
             detailRepo.text = user.publicRepos.toString()
             detailCompany.text = user.company ?: resources.getString(R.string.strip)
             detailLocation.text = user.location ?: resources.getString(R.string.strip)
+        }
+        if (user.isFavorite == true) {
+            binding.fabFavorite.setImageResource(R.drawable.ic_star_full)
+        } else {
+            binding.fabFavorite.setImageResource(R.drawable.ic_star_outline)
+        }
+
+        binding.fabFavorite.setOnClickListener {
+            if (user.isFavorite == true) {
+                user.isFavorite = false
+                viewModel.deleteFavoriteUser(user)
+                binding.fabFavorite.setImageResource(R.drawable.ic_star_outline)
+            } else {
+                user.isFavorite = true
+                viewModel.insertFavoriteUser(user)
+                binding.fabFavorite.setImageResource(R.drawable.ic_star_full)
+            }
         }
     }
 

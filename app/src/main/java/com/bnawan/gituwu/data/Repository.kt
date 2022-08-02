@@ -3,10 +3,15 @@ package com.bnawan.gituwu.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.bnawan.gituwu.data.local.UserDao
+import com.bnawan.gituwu.data.local.datastore.SettingPreferences
 import com.bnawan.gituwu.data.remote.ApiService
 import com.bnawan.gituwu.model.User
 
-class Repository(private val apiService: ApiService, private val userDao: UserDao) {
+class Repository(
+    private val apiService: ApiService,
+    private val userDao: UserDao,
+    private val settingPreferences: SettingPreferences
+) {
 
     fun searchUser(query: String): LiveData<Result<List<User>>> = liveData {
         emit(Result.Loading)
@@ -84,6 +89,11 @@ class Repository(private val apiService: ApiService, private val userDao: UserDa
 
     suspend fun deleteFavoriteUser(user: User) = userDao.deleteFavoriteUser(user)
 
+    suspend fun saveModeSetting(isDarkModeActive: Boolean) =
+        settingPreferences.saveModeSetting(isDarkModeActive)
+
+    fun getModeSetting() = settingPreferences.getModeSetting()
+
     companion object {
         private const val MESSAGE_NOT_FOUND = "User Not Found!"
 
@@ -91,10 +101,11 @@ class Repository(private val apiService: ApiService, private val userDao: UserDa
         private var instance: Repository? = null
         fun getInstance(
             apiService: ApiService,
-            userDao: UserDao
+            userDao: UserDao,
+            settingPreferences: SettingPreferences
         ): Repository =
             instance ?: synchronized(this) {
-                instance ?: Repository(apiService, userDao)
+                instance ?: Repository(apiService, userDao, settingPreferences)
             }.also { instance = it }
     }
 }

@@ -9,7 +9,7 @@ import com.bnawan.gituwu.model.User
 import com.bnawan.gituwu.util.UserDiffCallback
 import com.bumptech.glide.Glide
 
-class ListUserAdapter() :
+class ListUserAdapter :
     RecyclerView.Adapter<ListUserViewHolder>() {
 
     private lateinit var onUserClickCallback: OnUserClickCallback
